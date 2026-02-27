@@ -3,7 +3,7 @@ import { useState } from "react";
 const Button = ({onClick,text}) =>{
   return <button onClick={onClick}>{text}</button>
 }
-const Content = ({good,neutral,bad,all,average,positive}) =>{
+const Statistics = ({good,neutral,bad,all,average,positive}) =>{
   return(
     <>
       <p>good {good}</p>
@@ -47,7 +47,7 @@ const App = () =>{
       <Button onClick={handleStatistics('neutral')} text = {'neutral'}/>
       <Button onClick={handleStatistics('bad')} text = {'bad'}/>
       <h1>statistics</h1>
-      <Content 
+      <Statistics 
         good ={statistics.good} 
         neutral = {statistics.neutral} 
         bad ={statistics.bad}

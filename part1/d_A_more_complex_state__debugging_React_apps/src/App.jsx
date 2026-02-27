@@ -4,16 +4,20 @@ const Button = ({onClick,text}) =>{
   return <button onClick={onClick}>{text}</button>
 }
 const Statistics = ({good,neutral,bad,all,average,positive}) =>{
-  return(
-    <>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positive}</p>
-    </>
-  )
+  if(all>0){
+    return(
+      <>
+        <p>good {good}</p>
+        <p>neutral {neutral}</p>
+        <p>bad {bad}</p>
+        <p>all {all}</p>
+        <p>average {average}</p>
+        <p>positive {positive}</p>
+      </>
+    )
+  }else{
+    return <h2>No feedback given</h2>
+  }
 }
 const App = () =>{
   const [statistics,setStatistics] = useState({

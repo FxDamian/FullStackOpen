@@ -18,7 +18,7 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
   const [anecdote, setAnecdote] = useState({
-    selected:0, votes:[0,0,0,0,0,0,0,0]
+    selected:0, votes:[0,0,0,0,0,0,0,0],most:0
   })
 
   const handleRandom = () =>{
@@ -26,24 +26,32 @@ const App = () => {
     const num  = Math.floor(rand * anecdotes.length)
     setAnecdote({
       selected: num,
-      votes: anecdote.votes
+      votes: anecdote.votes,
+      most: anecdote.most
     })
   }
   const handleVote = () =>{
     const copy ={...anecdote.votes}
     copy[anecdote.selected] ++
+    let newmost =anecdote.most
+    if(copy[anecdote.selected]>copy[newmost])newmost=anecdote.selected
     setAnecdote({
       selected: anecdote.selected,
-      votes: copy
+      votes: copy,
+      most:newmost
     })
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[anecdote.selected]}</p>
       <p>has {anecdote.votes[anecdote.selected]} votes</p>
       <Button text = {'vote'} onClick = {handleVote}/>
       <Button text = {'next anecdote'} onClick = {handleRandom}/>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[anecdote.most]}</p>
+      <p>has {anecdote.votes[anecdote.most]} votes</p>
     </div>
   )
 }
